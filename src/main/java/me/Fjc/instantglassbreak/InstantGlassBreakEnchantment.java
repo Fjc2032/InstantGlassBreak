@@ -5,9 +5,14 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.inventory.ItemStack;
 
+import me.Fjc.instantglassbreak.InstantGlassBreak;
+
 public class InstantGlassBreakEnchantment extends Enchantment {
-    public InstantGlassBreakEnchantment(String namespace) {
+    private final NamespacedKey key;
+
+    public InstantGlassBreakEnchantment(NamespacedKey key) {
         super();
+        this.key = key;
     }
 
     @Override
@@ -32,7 +37,7 @@ public class InstantGlassBreakEnchantment extends Enchantment {
 
     @Override
         public boolean conflictsWith(Enchantment other) {
-        return conflictsWith(Enchantment.LOOT_BONUS_BLOCKS); //Enchantment will not be compatible with Fortune
+        return other == Enchantment.LOOT_BONUS_BLOCKS; //Enchantment will not be compatible with Fortune
     }
 
 
@@ -53,11 +58,11 @@ public class InstantGlassBreakEnchantment extends Enchantment {
 
     @Override
     public NamespacedKey getKey() {
-        return null;
+        return key;
     }
 
     @Override
     public String getTranslationKey() {
-        return "";
+        return "enchantment.instantglassbreak.glassbreaker";
     }
 }
