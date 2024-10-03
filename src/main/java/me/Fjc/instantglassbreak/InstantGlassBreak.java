@@ -1,6 +1,7 @@
 package me.Fjc.instantglassbreak;
 
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.event.Listener;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -16,7 +17,7 @@ import java.lang.reflect.Field;
 import java.time.Instant;
 
 public class InstantGlassBreak extends JavaPlugin implements Listener {
-    public static final Enchantment GLASS_BREAKER = new InstantGlassBreakEnchantment("glassbreaker");
+    public static final Enchantment GLASS_BREAKER = new InstantGlassBreakEnchantment(new NamespacedKey("instantglassbreak", "glassbreaker"));
 
     @Override
     public void onEnable() {
@@ -27,7 +28,8 @@ public class InstantGlassBreak extends JavaPlugin implements Listener {
         } catch (Exception e) {
             e.printStackTrace();
 
-        } //Register enchantment and catch exception trace
+        }
+        getServer().getPluginManager().registerEvents(this, this);
 
     }
 
@@ -77,7 +79,7 @@ public class InstantGlassBreak extends JavaPlugin implements Listener {
                 Material.RED_STAINED_GLASS_PANE,
                 Material.BLACK_STAINED_GLASS,
                 Material.BLACK_STAINED_GLASS_PANE
-        }; //All materials affected by enchant
+        };
 
         boolean isGlass = false;
         for (Material glass : glassTypes) {
@@ -112,3 +114,4 @@ public class InstantGlassBreak extends JavaPlugin implements Listener {
         }
     }
 }
+
